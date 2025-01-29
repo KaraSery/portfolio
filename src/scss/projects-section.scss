@@ -1,0 +1,117 @@
+.projects-section {
+  .title-wrapper {
+    height: 200vh;
+    margin-top: -100vh;
+    .title {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      h2 {
+        font-size: 10vh;
+        line-height: 0.8em;
+        height: 50%;
+        display: flex;
+        width: max-content;
+        position: relative;
+        left: 50%;
+      }
+      .top{
+        align-items: flex-end;
+        transform: translateY(-100%) translateX(-50%);
+        transform-origin: left;
+        opacity: 0;
+      }
+      .bottom{
+        align-items: flex-start;
+        transform-origin: left;
+        transform: translateY(100%) translateX(-50%);
+        opacity: 0;
+      }
+    }
+  }
+  .projects-wrapper {
+    .projects {
+      .project {
+        overflow-x: clip;
+        //&:not(:first-child) {
+        //  margin-top: -100vh;
+        //}
+        .project-title {
+          font-size: 7vw;
+        }
+        .start-anim-wrapper {
+          height: 200vh;
+          width: 100vw;
+
+          .start-anim {
+            //height: 100vh;
+            width: 100%;
+            position: sticky;
+            top: 15%;
+            //background-color: white;
+            padding-block: 10vh;
+            .project-title, .image-el {
+              transform-origin: 50% 50%;
+            }
+            .project-title {
+              color: white;
+              mix-blend-mode: difference;
+              z-index: 1;
+              position: absolute;
+              top: 100%;
+              transform: translateY(calc(-50% - 10vh));
+              width: 100vw;
+              display: flex;
+              justify-content: center;
+              h2 {
+                width: max-content;
+              }
+            }
+            .image-wrapper {
+              display: flex;
+              justify-content: center;
+              //position: absolute;
+              width: 100vw;
+              .image-el {
+                width: 70%;
+                max-width: 600px;
+                min-width: 250px;
+                background-color: black;
+                border-radius: 22px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 20px;
+                }
+              }
+            }
+          }
+        }
+        .description-wrapper {
+          height: 200vh;
+          @media (min-width: 700px) {
+            height: 250vh;
+          }
+          .description {
+            position: sticky;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold;
+            font-size: 4vw;
+            padding: 2em;
+            @media (min-width: 768px) {
+              font-size: 3vw;
+            }
+            @media (min-width: 1024px) {
+              font-size: 2vw;
+              padding-block: 20vh;
+            }
+          }
+        }
+      }
+    }
+  }
+}

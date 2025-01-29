@@ -1,0 +1,35 @@
+.hero {
+  height: 200vh;
+  .hero-content {
+    position: sticky;
+    width: fit-content;
+    margin-inline: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 7vw;
+    p, h1, h2 {
+      display: block;
+      //width: 100%;
+      //max-width: 50vw;
+    }
+    h1, h2 {
+      font-size: 7vw;
+      line-height: 1.5;
+    }
+    p {
+      line-height: 2;
+      font-size: 4vw;
+    }
+    strong {
+      font-weight: 600;
+    }
+    .hello {
+      transform: translateX(-10%);
+    }
+    .welcome {
+      margin-left: 5vh;
+      text-align: end;
+      transform: translateX(10%);
+    }
+  }
+}

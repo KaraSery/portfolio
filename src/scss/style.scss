@@ -1,0 +1,38 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+body {
+  font-family: "Inter Tight", serif;;
+  overflow-x: clip;
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  width: 100vw;
+  min-height: 100vh;
+}
+section {
+  width: 100vw;
+  overflow-x: clip;
+}
+footer {
+  height: 200vh;
+}
+ a {
+   text-decoration: none;
+   color: inherit;
+ }

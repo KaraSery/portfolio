@@ -1,0 +1,68 @@
+footer {
+  height: 200vh;
+  margin-top: -100vh;
+  .contact {
+    padding: 50px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .contact-link {
+      opacity: 0;
+      width: max-content;
+      transform: translate(0%, -300%);
+      display: flex;
+      flex-direction: column;
+      height: 2.5vw;
+      overflow: hidden;
+      span {
+        transition: all .2s;
+        font-size: 2.5vw;
+        height: 2.5vw;
+        line-height: 2.5vw;
+      }
+      &:hover {
+        span {
+          transform: translateY(-100%);
+        }
+      }
+    }
+    .name-wrapper {
+      align-self: center;
+      font-size: 7vw;
+      .full-name {
+        opacity: 0;
+        transform: translate(-100%, 0%);
+      }
+      .web-dev {
+        opacity: 0;
+        transform: translate(100%, 0%);
+      }
+    }
+    .social {
+      align-self: flex-end;
+      transform: translate(0%, 300%);
+      display: flex;
+      gap: 15px;
+      a {
+        position: relative;
+        width: max-content;
+        div {
+          transition: all .2s;
+          position: absolute;
+          height: 1px;
+          width: 0%;
+          background-color: white;
+        }
+
+        &:hover{
+          div {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

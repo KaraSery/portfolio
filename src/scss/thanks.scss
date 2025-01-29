@@ -1,0 +1,19 @@
+.thanks {
+  height: 200vh;
+  margin-top: -100vh;
+  .sticky-wrapper {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10vw;
+    h2 {
+      width: fit-content;
+      font-size: 7vw;
+    }
+  }
+}
