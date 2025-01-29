@@ -148,7 +148,7 @@ function aboutTextScrollAnim() {
                 const dY = Math.abs(scrollY - elCenterEnd);
                 let ratio = 1 - (dY / (el.height * 3));
                 el.el.style.opacity = `${ratio}`;
-                el.el.style.filter = `blur(${4 - ratio * 4}px)`;
+                el.el.style.filter = `blur(${1 - ratio * 1}px)`;
             })
             aboutTextTicking = false
         })
