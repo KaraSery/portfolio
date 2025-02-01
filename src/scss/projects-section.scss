@@ -109,6 +109,25 @@
               font-size: 2vw;
               padding-block: 20vh;
             }
+            .repo-github {
+              margin-top: 5vh;
+              width: 100%;
+              text-align: end;
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              gap: 10px;
+              svg {
+                fill: white;
+              }
+              a {
+                font-size: 0.65em;
+                font-weight: normal;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
           }
         }
       }

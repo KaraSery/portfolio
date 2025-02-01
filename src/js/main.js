@@ -306,8 +306,6 @@ projects.forEach((project, idx) => {
     const image = startAnimElement.querySelector('.image-el')
     const title = startAnimElement.querySelector('.project-title')
 
-    const descriptionElement = project.querySelector('.description')
-
     let projectObserverOptions = {
         threshold: 0.0,
     }
