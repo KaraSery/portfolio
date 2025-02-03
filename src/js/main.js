@@ -5,6 +5,8 @@ import '../scss/what-i-do.scss'
 import '../scss/projects-section.scss'
 import '../scss/footer.scss'
 import '../scss/thanks.scss'
+import '../scss/navbar.scss'
+
 
 // Hero section
 
@@ -42,6 +44,7 @@ let heroStart;
 let heroStartAnim;
 let heroEndAnim;
 let heroAnimDuration;
+
 
 function heroObserverCallback(entries) {
     entries.forEach(entry => {
@@ -96,7 +99,7 @@ function aboutTitleScrollAnim() {
 function aboutTitleObserverCallback(entries) {
     entries.forEach(entry => {
         aboutTitleEntry = entry
-        aboutTitleStart = window.scrollY + aboutTitleEntry.boundingClientRect.top;
+        aboutTitleStart = window.scrollY + aboutTitleEntry.boundingClientRect.top; //
         aboutTitleStartAnim = aboutTitleStart;
         aboutTitleEndAnim = aboutTitleStartAnim + (aboutTitleEntry.boundingClientRect.height - (window.innerHeight));
         aboutTitleAnimDuration = aboutTitleEndAnim - aboutTitleStartAnim
@@ -475,7 +478,7 @@ function thanksScrollAnim() {
     const ratio = Math.min(Math.max(scrollY / (thanksAnimDuration), 0), 1);
     if (!thanksTicking) {
         window.requestAnimationFrame(() => {
-            console.log(scrollY, window.scrollY, thanksStartAnim,thanksEndAnim, thanksAnimDuration, ratio)
+            // console.log(scrollY, window.scrollY, thanksStartAnim,thanksEndAnim, thanksAnimDuration, ratio)
             thanksStickyWrapper.style.opacity = `${1-ratio}`;
             thanksTicking = false
         })
@@ -549,7 +552,7 @@ function footerObserverCallback(entries) {
         footerStart = window.scrollY + footerEntry.boundingClientRect.top;
         //
         footerStartAnim = footerStart;
-        footerEndAnim = footerStartAnim + entry.boundingClientRect.height - window.innerHeight;
+        footerEndAnim = footerStartAnim + entry.boundingClientRect.height - (window.innerHeight * 2);
         footerAnimDuration = footerEndAnim - footerStartAnim
 
         if (entry.isIntersecting) document.addEventListener('scroll', footerScrollAnim)
@@ -558,3 +561,50 @@ function footerObserverCallback(entries) {
 }
 let footerObserver = new IntersectionObserver(footerObserverCallback, footerObserverOptions)
 footerObserver.observe(footer)
+
+// Nav Bar
+const navBar = document.querySelector('.navbar');
+const navBarPerspective = navBar.querySelector('.perspective');
+
+const navBarItems = navBarPerspective.querySelectorAll("a");
+let R = 150;
+if(window.innerWidth > 768) {
+    R = 200
+}
+// const R = 200; // Distance de la navbar
+const w = (el)=> el.getBoundingClientRect().height + 20; // Largeur des éléments
+const angle = (el) => w(el) / R; // Angle en radians
+
+const navBarCheckPoints = [
+    window.scrollY + heroSection.getBoundingClientRect().top, // hero start
+    window.scrollY + aboutTitle.getBoundingClientRect().top + (aboutTitle.getBoundingClientRect().height - (window.innerHeight)), // about title end
+    window.scrollY + whatIDoSection.getBoundingClientRect().top, // what i do start
+    window.scrollY + projectTitleWrapper.getBoundingClientRect().top + projectTitleWrapper.getBoundingClientRect().height - window.innerHeight, // projects title end
+    window.scrollY + footer.getBoundingClientRect().top + footer.getBoundingClientRect().height - (window.innerHeight * 2)// footer end
+]
+console.log();
+navBarItems.forEach((item, index) => {
+    const theta = index * angle(item); // Angle actuel
+    item.style.transform = `translate(-50%, -50%) rotateX(-${theta}rad) translateZ(${R}px)`;
+    item.dataset.rotateX = theta.toString()
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({top:navBarCheckPoints[index] +1 , behavior: 'smooth'})
+    })
+});
+
+document.addEventListener('scroll', ()=> {
+    let theta;
+    let navBarItem;
+    navBarCheckPoints.forEach((checkPoint, index) => {
+        if(window.scrollY >= checkPoint) {
+            theta = navBarItems[index].dataset.rotateX
+            navBarItem = navBarItems[index];
+        }
+    })
+    navBarItems.forEach((item, index) => {
+        if (item === navBarItem) item.classList.add('active');
+        else item.classList.remove('active');
+    })
+    navBarPerspective.style.transform = `rotateX(${theta}rad)`;
+})
