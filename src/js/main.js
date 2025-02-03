@@ -151,7 +151,7 @@ function aboutTextScrollAnim() {
                 const dY = Math.abs(scrollY - elCenterEnd);
                 let ratio = 1 - (dY / (el.height * 3));
                 el.el.style.opacity = `${ratio}`;
-                el.el.style.filter = `blur(${1 - ratio * 1}px)`;
+                // el.el.style.filter = `blur(${4 - ratio * 4}px)`;
             })
             aboutTextTicking = false
         })
@@ -590,6 +590,8 @@ navBarItems.forEach((item, index) => {
     item.addEventListener('click', (e) => {
         e.preventDefault();
         window.scrollTo({top:navBarCheckPoints[index] +1 , behavior: 'smooth'})
+        navBar.classList.toggle('active');
+        navBarToggle.classList.toggle('active');
     })
 });
 
@@ -607,4 +609,11 @@ document.addEventListener('scroll', ()=> {
         else item.classList.remove('active');
     })
     navBarPerspective.style.transform = `rotateX(${theta}rad)`;
+})
+
+const navBarToggle = document.querySelector('.navbar-toggle');
+navBarToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    navBar.classList.toggle('active');
+    navBarToggle.classList.toggle('active');
 })

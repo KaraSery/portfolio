@@ -1,15 +1,63 @@
+.navbar-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: unset;
+  color: white;
+  border: none;
+  z-index: 2;
+  font-size: 4vw;
+  svg {
+    width: 1em;
+    height: 1em;
+    fill: white;
+  }
+  .close {
+    display: none;
+  }
+  &.active {
+    .open {
+      display: none;
+    }
+    .close {
+      display: block;
+    }
+  }
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
 .navbar {
+  transition: width 0.2s ease;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: fit-content;
+  width: 0vw;
+  overflow: hidden;
   height: 100vh;
   position: fixed;
-  mix-blend-mode: difference;
   z-index: 1;
-  right: 20px;
+  right: 0px;
   top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  &.active {
+    @media (max-width: 768px) {
+      width: 100vw;
+    }
+  }
+  @media (min-width: 768px) {
+
+    overflow: unset;
+    width: fit-content;
+    backdrop-filter: unset;
+    mix-blend-mode: difference;
+    background-color: transparent;
+    right: 20px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+  }
   .perspective {
     display: flex;
     flex-direction: column;
@@ -19,13 +67,19 @@
     perspective: 1000px;
     transform-style: preserve-3d;
     transition: transform 0.2s ease;
+    @media (max-width: 767px) {
+      padding-top: 15vh;
+      transform: unset!important;
+    }
+    @media (min-width: 768px) {
+      transform: unset;
+    }
     a {
       transition: all 0.2s ease;
-      position: absolute;
-      transform: translate(-50%, -50%);
+      position: relative;
       width: max-content;
       color: white;
-      font-size: 4vw;
+      font-size: 7vw;
       .underline {
         transition: width 0.4s ease 0.1s;
         height: 0.5vh;
@@ -34,7 +88,6 @@
         background: white;
       }
       &.active {
-        font-size: 5vw;
         font-weight: bold;
         font-style: italic;
         .underline {
@@ -42,8 +95,13 @@
         }
       }
 
+      @media (max-width: 767px) {
+        transform: unset!important;
+      }
       @media (min-width: 768px) {
         font-size: 2vw;
+        transform: translate(-50%, -50%);
+        position: absolute;
         &.active {
           font-size: 3vw;
         }
